@@ -14,6 +14,7 @@
     "typescript": "latest"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.7",
     "@types/node": "^20.19.9",
     "convex": "1.25.4",
     "save-dev": "0.0.1-security"
