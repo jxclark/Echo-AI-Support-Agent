@@ -4,11 +4,9 @@ import { WidgetScreen } from "../types";
 import { CONTACT_SESSION_KEY } from "../constants";
 import { Id } from "@workspace/backend/_generated/dataModel";
 
-// Bsaic widget state atoms
 export const screenAtom = atom<WidgetScreen>("loading");
 export const organizationIdAtom = atom<string | null>(null);
 
-// Organization-scoped contact session atom
 export const contactSessionIdAtomFamily = atomFamily(
   (organizationId: string) => {
     return atomWithStorage<Id<"contactSessions"> | null>(
@@ -20,3 +18,4 @@ export const contactSessionIdAtomFamily = atomFamily(
 
 export const errorMessageAtom = atom<string | null>(null);
 export const loadingMessageAtom = atom<string | null>(null);
+export const conversationIdAtom = atom<Id<"coversations"> | null>(null);
