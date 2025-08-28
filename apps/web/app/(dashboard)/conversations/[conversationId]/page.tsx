@@ -8,7 +8,9 @@ const Page = async ({
 }) => {
   const { conversationId } = await params;
   return (
-    <ConversationIdView conversationId={conversationId as Id<"coversations">} />
+    <ConversationIdView
+      conversationId={conversationId as Id<"conversations">}
+    />
   );
 };
 

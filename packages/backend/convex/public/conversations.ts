@@ -21,7 +21,7 @@ export const getMany = query({
     }
 
     const conversations = await ctx.db
-      .query("coversations")
+      .query("conversations")
       .withIndex("by_contact_session_id", (q) =>
         q.eq("contactSessionId", args.contactSessionId)
       )
@@ -61,7 +61,7 @@ export const getMany = query({
 
 export const getOne = query({
   args: {
-    conversationId: v.id("coversations"),
+    conversationId: v.id("conversations"),
     contactSessionId: v.id("contactSessions"),
   },
   handler: async (ctx, args) => {
@@ -126,7 +126,7 @@ export const create = mutation({
       },
     });
 
-    const conversationId = await ctx.db.insert("coversations", {
+    const conversationId = await ctx.db.insert("conversations", {
       contactSessionId: session._id,
       status: "unresolved",
       organizationId: args.organizationId,

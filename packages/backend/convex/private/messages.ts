@@ -1,14 +1,56 @@
 import { ConvexError, v } from "convex/values";
-import { mutation, query } from "../_generated/server";
+import { generateText } from "ai";
+import { action, mutation, query } from "../_generated/server";
 import { components } from "../_generated/api";
 import { supportAgent } from "../system/ai/agents/supportAgent";
 import { paginationOptsValidator } from "convex/server";
 import { saveMessage } from "@convex-dev/agent";
+import { openai } from "@ai-sdk/openai";
+
+export const enhanceResponse = action({
+  args: {
+    prompt: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (identity === null) {
+      throw new ConvexError({
+        code: "UNAUTHORIZED",
+        message: "Not authenticated",
+      });
+    }
+
+    const orgId = identity.orgId as string;
+    if (!orgId) {
+      throw new ConvexError({
+        code: "UNAUTHORIZED",
+        message: "Organization not found",
+      });
+    }
+
+    const response = await generateText({
+      model: openai("gpt-4o-mini"),
+      messages: [
+        {
+          role: "system",
+          content: `Enhance the operator's message to be more professional, clear, 
+            and helpful while maintaing their intent and key information`,
+        },
+        {
+          role: "user",
+          content: args.prompt,
+        },
+      ],
+    });
+    return response.text;
+  },
+});
 
 export const create = mutation({
   args: {
     prompt: v.string(),
-    conversationId: v.id("coversations"),
+    conversationId: v.id("conversations"),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -86,7 +128,7 @@ export const getMany = query({
     }
 
     const conversation = await ctx.db
-      .query("coversations")
+      .query("conversations")
       .withIndex("by_thread_id", (q) => q.eq("threadId", args.threadId))
       .unique();
 

@@ -3,5 +3,5 @@ import { STATUS_FILTER_KEY } from "./constants";
 import { Doc } from "@workspace/backend/_generated/dataModel";
 
 export const statusFilterAtom = atomWithStorage<
-  Doc<"coversations">["status"] | "all"
+  Doc<"conversations">["status"] | "all"
 >(STATUS_FILTER_KEY, "all");
