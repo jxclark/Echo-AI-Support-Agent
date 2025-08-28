@@ -40,7 +40,7 @@ export const DicebearAvatar = ({
 
   return (
     <div
-      className="relative, inline-block"
+      className="relative inline-block"
       style={{ width: size, height: size }}
     >
       <Avatar
@@ -52,7 +52,7 @@ export const DicebearAvatar = ({
       {badgeImageUrl && (
         <div
           className={cn(
-            "absolute right-0 bottom-0 flex items-center overflow-hidden rounded-full border-2 border-background bg-background",
+            "absolute right-0 bottom-0 flex items-center overflow-hidden justify-center rounded-full border-2 border-background bg-background",
             badgeClassName
           )}
           style={{
