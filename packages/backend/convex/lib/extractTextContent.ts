@@ -5,9 +5,9 @@ import { assert } from "convex-helpers";
 import { generateText } from "ai";
 
 const AI_MODELS = {
-  image: openai.chat("gpt.4o-mini"),
-  pdf: openai.chat("gpt.4o"),
-  html: openai.chat("gpt.4o"),
+  image: openai.chat("gpt-4o-mini"),
+  pdf: openai.chat("gpt-4o"),
+  html: openai.chat("gpt-4o"),
 } as const;
 
 const SUPPORTED_IMAGE_TYPES = [
@@ -40,7 +40,7 @@ export async function extractTextContent(
   const url = await ctx.storage.getUrl(storageId);
   assert(url, "Failed to get storage URL");
 
-  if (SUPPORTED_IMAGE_TYPES.some((type) => mimeType)) {
+  if (SUPPORTED_IMAGE_TYPES.some((type) => mimeType === type)) {
     return extractImageText(url);
   }
 
