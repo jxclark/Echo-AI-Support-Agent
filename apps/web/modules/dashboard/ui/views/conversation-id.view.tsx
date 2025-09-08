@@ -7,7 +7,7 @@ import { Id } from "@workspace/backend/_generated/dataModel";
 import { Button } from "@workspace/ui/components/button";
 import { useMutation, useQuery, useAction } from "convex/react";
 import { MoreHorizontalIcon, Wand2Icon } from "lucide-react";
-import { toUIMessages, useThreadMessages } from "@convex-dev/agent/react";
+import { toUIMessages, useThreadMessages, type UIMessage } from "@convex-dev/agent/react";
 import {
   AIConversation,
   AIConversationContent,
@@ -172,7 +172,7 @@ export const ConversationIdView = ({
               key={message.id}
             >
               <AIMessageContent>
-                <AIResponse>{message.content}</AIResponse>
+                <AIResponse>{(message as any).content}</AIResponse>
               </AIMessageContent>
               {message.role === "user" && (
                 <DicebearAvatar
