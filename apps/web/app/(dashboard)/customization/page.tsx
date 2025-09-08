@@ -1,7 +1,8 @@
 import React from "react";
+import { CusomizationView } from "../../../modules/customization/ui/views/customization-view";
 
 const Page = () => {
-  return <div>Customization</div>;
+  return <CusomizationView />;
 };
 
 export default Page;
