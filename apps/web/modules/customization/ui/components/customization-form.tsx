@@ -35,7 +35,7 @@ interface CustomizationFormProps {
   initialData?: WidgetSettings | null;
   hasVapiPlugin: boolean;
 }
-
+``;
 export const CustomizationForm = ({
   initialData,
   hasVapiPlugin,
