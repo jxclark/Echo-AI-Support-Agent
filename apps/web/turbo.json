@@ -1,5 +1,5 @@
 {
-  "extends": "../../turbo.json",
+  "extends": ["../../turbo.json"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
