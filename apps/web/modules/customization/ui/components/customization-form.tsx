@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/Card";
+} from "@workspace/ui/components/card";
 import {
   Form,
   FormControl,
