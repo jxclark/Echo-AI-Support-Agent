@@ -1,0 +1,14 @@
+{
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**"],
+      "env": [
+        "RESEND_API_KEY",
+        "CLERK_SECRET_KEY",
+        "SENTRY_AUTH_TOKEN",
+        "RESEND_FROM_EMAIL"
+      ]
+    }
+  }
+}
